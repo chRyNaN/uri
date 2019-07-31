@@ -11,7 +11,16 @@ uri(
   fragment = "top",
   path = "/forum/questions/",
   query = "tag=networking&order=newest",
-  authority = "john.doe@www.example.com:123",
+  userInfo = "john.doe",
+  host = "www.example.com",
+  port = 123
+)
+
+uriOrNull(
+  scheme = "https",
+  fragment = "top",
+  path = "/forum/questions/",
+  query = "tag=networking&order=newest",
   userInfo = "john.doe",
   host = "www.example.com",
   port = 123

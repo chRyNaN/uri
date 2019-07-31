@@ -2,7 +2,6 @@ package com.chrynan.uri
 
 internal data class SimpleUri(
     override val scheme: String,
-    override val authority: String? = null,
     override val userInfo: String? = null,
     override val host: String? = null,
     override val port: Int? = null,
@@ -11,10 +10,42 @@ internal data class SimpleUri(
     override val fragment: String? = null
 ) : Uri {
 
+    override val authority: String?
+        get() {
+            if (userInfo == null && host == null && port == null) return null
+
+            val sb = StringBuilder()
+
+            if (userInfo != null) {
+                sb.append(userInfo)
+                sb.append('@')
+            }
+
+            if (host != null) {
+                sb.append(host)
+            }
+
+            if (port != null) {
+                sb.append(':')
+                sb.append(port)
+            }
+
+            return sb.toString()
+        }
+
     override val schemeSpecificPart: String
         get() = buildString {
-            authority?.let(::append)
+            if (authority != null) {
+                append("//")
+                append(authority)
+            }
+
+            append('/')
             append(path)
-            query?.let(::append)
+
+            if (query != null) {
+                append('?')
+                append(query)
+            }
         }
 }
