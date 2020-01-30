@@ -19,7 +19,6 @@ fun uriFromString(uriString: UriString): Uri {
             fragment = fragment,
             path = path,
             query = query,
-            authority = authority,
             userInfo = userInfo,
             host = host,
             port = port

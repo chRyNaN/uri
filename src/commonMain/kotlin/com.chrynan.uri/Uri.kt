@@ -1,6 +1,7 @@
 package com.chrynan.uri
 
 interface Uri {
+
     val scheme: String
     val authority: String?
     val userInfo: String?

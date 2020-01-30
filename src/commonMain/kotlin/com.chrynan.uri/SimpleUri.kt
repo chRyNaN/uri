@@ -14,23 +14,21 @@ internal data class SimpleUri(
         get() {
             if (userInfo == null && host == null && port == null) return null
 
-            val sb = StringBuilder()
+            return buildString {
+                if (userInfo != null) {
+                    append(userInfo)
+                    append('@')
+                }
 
-            if (userInfo != null) {
-                sb.append(userInfo)
-                sb.append('@')
+                if (host != null) {
+                    append(host)
+                }
+
+                if (port != null) {
+                    append(':')
+                    append(port)
+                }
             }
-
-            if (host != null) {
-                sb.append(host)
-            }
-
-            if (port != null) {
-                sb.append(':')
-                sb.append(port)
-            }
-
-            return sb.toString()
         }
 
     override val schemeSpecificPart: String
