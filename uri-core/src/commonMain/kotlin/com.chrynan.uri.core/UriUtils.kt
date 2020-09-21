@@ -2,6 +2,13 @@
 
 package com.chrynan.uri.core
 
+/**
+ * Retrieves a [Uri] from the provided parts. If the provided parts are valid and properly formatted, then a [Uri] is
+ * returned. If the provided parts are invalid or not properly formatted, then an [InvalidUriException] is thrown.
+ *
+ * @see [Uri]
+ * @see [UriString]
+ */
 fun Uri.Companion.fromParts(
     scheme: String,
     userInfo: String? = null,
@@ -26,6 +33,13 @@ fun Uri.Companion.fromParts(
     )
 }
 
+/**
+ * Retrieves a [Uri] from the provided parts. If the provided parts are valid and properly formatted, then a [Uri] is
+ * returned. If the provided parts are invalid or not properly formatted, then null is returned.
+ *
+ * @see [Uri]
+ * @see [UriString]
+ */
 fun Uri.Companion.fromPartsOrNull(
     scheme: String,
     userInfo: String? = null,
