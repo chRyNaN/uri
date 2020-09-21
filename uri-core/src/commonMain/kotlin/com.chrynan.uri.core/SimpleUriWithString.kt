@@ -1,6 +1,6 @@
 package com.chrynan.uri.core
 
-data class SimpleUriString(override val uriString: UriString) : Uri {
+data class SimpleUriWithString(override val uriString: UriString) : Uri {
 
     override val scheme: String
         get() = TODO("Not yet implemented")

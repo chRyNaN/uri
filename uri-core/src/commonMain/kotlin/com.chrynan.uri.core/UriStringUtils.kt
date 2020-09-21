@@ -9,7 +9,7 @@ private val validator = UrlValidator()
 
 fun Uri.Companion.fromString(uriString: UriString): Uri =
     when (val result = validator.validate(uriString)) {
-        is ValidationResult.Valid -> SimpleUriString(uriString)
+        is ValidationResult.Valid -> SimpleUriWithString(uriString)
         is ValidationResult.Invalid -> throw InvalidUriException(message = "Invalid Uri from String = $uriString. Errors = ${result.errors}")
     }
 
