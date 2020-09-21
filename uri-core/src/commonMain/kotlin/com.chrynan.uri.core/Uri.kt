@@ -58,6 +58,11 @@ interface Uri {
      * A [Uri] UserInfo subcomponent is a portion of the [authority] component. It is an optional subcomponent that may
      * consist of a user name and an optional password preceded by a colon (':') and followed by a '@' character.
      *
+     * Note that if the [authority] is not present, then this will always return null. This is because this is a
+     * subcomponent of the [authority] component. Even though some [path]s may have [userInfo] like components, it will
+     * not be considered a [userInfo] component and this will return null. For example, for the following [Uri], the
+     * [userInfo] property should return null: mailto:John.Doe@example.com
+     *
      * This property will return the UserInfo subcomponent without the following '@' character, and in the following
      * form: username:password.
      */
