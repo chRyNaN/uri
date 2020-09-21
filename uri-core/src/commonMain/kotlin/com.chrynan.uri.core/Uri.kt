@@ -131,20 +131,17 @@ interface Uri {
     val schemeSpecificPart: String
         get() = buildString {
             if (authority != null) {
-                append("//")
-                append(authority)
+                append("//$authority")
             }
 
             append(path)
 
             if (query != null) {
-                append('?')
-                append(query)
+                append("?$query")
             }
 
             if (fragment != null) {
-                append('#')
-                append(fragment)
+                append("#$fragment")
             }
         }
 
