@@ -44,34 +44,6 @@ If an error is encountered with the `Uri.fromString` function, then an exception
 Uri.fromStringOrNull(uriString = "https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top")
 ```
 
-## GraphQL
-This library also contains a GraphQL type reference in the `schema` folder.
-```graphql
-scalar UriString
-
-type Uri {
-    scheme: String!
-    authority: String
-    userInfo: String
-    host: String
-    port: Int
-    path: String!
-    query: String
-    fragment: String
-}
-
-input InputUri {
-    scheme: String!
-    authority: String
-    userInfo: String
-    host: String
-    port: Int
-    path: String!
-    query: String
-    fragment: String
-}
-```
-
 ## Building
 
 The library is provided through [Bintray](https://bintray.com/). Refer to the [releases page](https://github.com/chRyNaN/uri/releases) for the latest version.
