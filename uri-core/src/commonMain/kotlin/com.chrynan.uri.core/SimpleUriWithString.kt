@@ -134,8 +134,21 @@ data class SimpleUriWithString(override val uriString: UriString) : Uri {
     override val path: String
         get() = TODO("Not yet implemented")
 
-    override val query: String?
-        get() = TODO("Not yet implemented")
+    override val query: String? by lazy {
+        val startIndex = uriString.indexOf(queryStartDelimiter)
+
+        if (startIndex == -1 || startIndex + 1 >= uriString.length) {
+            null
+        } else {
+            val result = uriString.substring(startIndex = startIndex + 1)
+
+            if (result.isBlank()) {
+                null
+            } else {
+                result
+            }
+        }
+    }
 
     override val fragment: String? by lazy {
         val startIndex = uriString.indexOf(fragmentStartDelimiter)
@@ -143,7 +156,7 @@ data class SimpleUriWithString(override val uriString: UriString) : Uri {
         if (startIndex == -1 || startIndex + 1 >= uriString.length) {
             null
         } else {
-            val result = uriString.substring(startIndex = startIndex)
+            val result = uriString.substring(startIndex = startIndex + 1)
 
             if (result.isBlank()) {
                 null
