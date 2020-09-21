@@ -108,6 +108,24 @@ interface Uri {
      * This property will return the Scheme Specific Part of this [Uri].
      */
     val schemeSpecificPart: String
+        get() = buildString {
+            if (authority != null) {
+                append("//")
+                append(authority)
+            }
+
+            append(path)
+
+            if (query != null) {
+                append('?')
+                append(query)
+            }
+
+            if (fragment != null) {
+                append('#')
+                append(fragment)
+            }
+        }
 
     /**
      * Represents this [Uri] as a [UriString] value. This should be a [UriString] value consisting of all of the parts
