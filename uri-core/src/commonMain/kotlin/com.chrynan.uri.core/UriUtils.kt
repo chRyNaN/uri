@@ -63,14 +63,19 @@ fun Uri.Companion.fromPartsOrNull(
         null
     }
 
+/**
+ * Retrieves the final path segment of the [Uri.path] without the preceding slash character ('/'). If the final path
+ * segment is blank then null will be returned.
+ */
 val Uri.slug: String?
     get() {
         val i = path.lastIndexOf(char = '/')
 
         if ((i == -1) and (path.isNotBlank())) return path
         if (i == -1) return null
+        if (i + 1 > path.length) return null
 
-        val s = path.substring(startIndex = i)
+        val s = path.substring(startIndex = i + 1)
 
         if (s.isBlank()) return null
 
