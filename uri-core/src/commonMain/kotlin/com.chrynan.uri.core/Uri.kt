@@ -2,6 +2,8 @@ package com.chrynan.uri.core
 
 interface Uri {
 
+    companion object
+
     val scheme: String
     val authority: String?
     val userInfo: String?

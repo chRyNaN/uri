@@ -1,6 +1,6 @@
 package com.chrynan.uri.core
 
-fun uri(
+fun Uri.Companion.fromParts(
     scheme: String,
     userInfo: String? = null,
     host: String? = null,
@@ -24,7 +24,7 @@ fun uri(
     )
 }
 
-fun uriOrNull(
+fun Uri.Companion.fromPartsOrNull(
     scheme: String,
     userInfo: String? = null,
     host: String? = null,
@@ -34,7 +34,7 @@ fun uriOrNull(
     fragment: String? = null
 ): Uri? =
     try {
-        uri(
+        fromParts(
             scheme = scheme,
             userInfo = userInfo,
             host = host,

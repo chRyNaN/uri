@@ -14,7 +14,7 @@ fun uriFromString(uriString: UriString): Uri {
         val host = authority?.let { getHost(authority = it) }
         val port = authority?.let { getPort(authority = it) }
 
-        return uri(
+        return fromParts(
             scheme = scheme,
             fragment = fragment,
             path = path,

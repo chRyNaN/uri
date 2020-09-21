@@ -6,7 +6,7 @@ Consider the following Uri: **https://john.doe@www.example.com:123/forum/questio
 
 ### Creating a Uri:
 ```kotlin
-uri(
+Uri.fromParts(
   scheme = "https",
   fragment = "top",
   path = "/forum/questions/",
@@ -18,9 +18,9 @@ uri(
 ```
 
 ### Creating an optional Uri:
-If an error is encountered with the `uri` function, then an exception is thrown. Instead of throwing an exception, null can be returned, using the `uriOrNull` function.
+If an error is encountered with the `Uri.fromParts` function, then an exception is thrown. Instead of throwing an exception, null can be returned, using the `Uri.fromPartsOrNull` function.
 ```kotlin
-uriOrNull(
+Uri.fromPartsOrNull(
   scheme = "https",
   fragment = "top",
   path = "/forum/questions/",
