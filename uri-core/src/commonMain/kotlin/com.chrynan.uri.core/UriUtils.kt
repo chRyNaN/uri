@@ -78,18 +78,10 @@ val Uri.slug: String?
     }
 
 val Uri.containsFragment: Boolean
-    get() = fragment == null
-
-val Uri.isAbsolute: Boolean
-    get() = scheme.isNotBlank()
-
-val Uri.isRelative: Boolean
-    get() = !isAbsolute
+    get() = fragment != null
 
 val Uri.isHierarchical: Boolean
     get() {
-        if (isRelative) return true
-
         if (schemeSpecificPart.startsWith('/')) return true
 
         return false
@@ -114,14 +106,3 @@ val Uri.queryParameters: Map<String, String>
                 key to value
             }
     }
-
-fun Uri.toDecodedString(): UriString = buildString {
-    append(scheme)
-    append(':')
-    append(schemeSpecificPart)
-
-    if (!fragment.isNullOrBlank()) {
-        append('#')
-        append(fragment)
-    }
-}
