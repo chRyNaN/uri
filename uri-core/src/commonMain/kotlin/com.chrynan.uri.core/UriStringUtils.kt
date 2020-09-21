@@ -1,6 +1,8 @@
+@file:Suppress("unused")
+
 package com.chrynan.uri.core
 
-fun uriFromString(uriString: UriString): Uri {
+fun Uri.Companion.fromString(uriString: UriString): Uri {
     try {
         val schemeEndIndex = uriString.indexOf(char = ':')
         val fragmentStartIndex = uriString.indexOf(char = '#', startIndex = schemeEndIndex) + 1
@@ -28,9 +30,9 @@ fun uriFromString(uriString: UriString): Uri {
     }
 }
 
-fun uriFromStringOrNull(uriString: UriString): Uri? =
+fun Uri.Companion.fromStringOrNull(uriString: UriString): Uri? =
     try {
-        uriFromString(uriString = uriString)
+        fromString(uriString = uriString)
     } catch (e: InvalidUriException) {
         null
     }

@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.chrynan.uri.core
 
 fun Uri.Companion.fromParts(

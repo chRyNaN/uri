@@ -35,13 +35,13 @@ Uri.fromPartsOrNull(
 This library has a typealias, `UriString`, which is just a `String`. A `UriString` can be parsed and turned into a `Uri`.
 
 ```kotlin
-uriFromString(uriString = "https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top")
+Uri.fromString(uriString = "https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top")
 ```
 
 ### Creating an optional Uri from a String:
-If an error is encountered with the `uriFromString` function, then an exception is thrown. Instead of throwing an exception, null can be returned, using the `uriFromStringOrNull` function.
+If an error is encountered with the `Uri.fromString` function, then an exception is thrown. Instead of throwing an exception, null can be returned, using the `Uri.fromStringOrNull` function.
 ```kotlin
-uriFromStringOrNull(uriString = "https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top")
+Uri.fromStringOrNull(uriString = "https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top")
 ```
 
 ## GraphQL
