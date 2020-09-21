@@ -82,9 +82,6 @@ val Uri.slug: String?
         return s
     }
 
-val Uri.containsFragment: Boolean
-    get() = fragment != null
-
 val Uri.isHierarchical: Boolean
     get() {
         if (schemeSpecificPart.startsWith('/')) return true
