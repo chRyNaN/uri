@@ -9,10 +9,24 @@ package com.chrynan.uri.core
  */
 data class SimpleUriWithString(override val uriString: UriString) : Uri {
 
-    override val scheme: String
-        get() = TODO("Not yet implemented")
-    override val userInfo: String?
-        get() = TODO("Not yet implemented")
+    override val scheme: String by lazy { uriString.substringBefore(':') }
+
+    override val userInfo: String? by lazy {
+        var startIndex = uriString.indexOf("://") + 3
+
+        if (startIndex == -1) {
+            startIndex = uriString.indexOf(':') + 1
+        }
+
+        val endIndex = uriString.indexOf('@')
+
+        if (startIndex == -1 || endIndex == -1) {
+            null
+        } else {
+            uriString.substring(startIndex = startIndex, endIndex = endIndex)
+        }
+    }
+
     override val host: String?
         get() = TODO("Not yet implemented")
     override val port: Int?
