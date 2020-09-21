@@ -110,6 +110,33 @@ fun Uri.Companion.fromPartsOrNull(
     }
 
 /**
+ * Retrieves a [Uri] from the provided parts without performing any validation or formatting of the input. Note that
+ * this can result in undefined behavior if the provided input isn't valid or formatted appropriately according to the
+ * the [Uri] interface documentation. Only use this function if you are certain that the provided input parts are
+ * properly valid and formatted and you wish to bypass the validation and formatting for performance reasons.
+ *
+ * @see [Uri]
+ * @see [UriString]
+ */
+fun Uri.Companion.unsafeFromParts(
+    scheme: String,
+    userInfo: String? = null,
+    host: String? = null,
+    port: Int? = null,
+    path: String,
+    query: String? = null,
+    fragment: String? = null
+): Uri = SimpleUriWithParts(
+    scheme = scheme,
+    userInfo = userInfo,
+    host = host,
+    port = port,
+    path = path,
+    query = query,
+    fragment = fragment
+)
+
+/**
  * Retrieves the final path segment of the [Uri.path] without the preceding slash character ('/'). If the final path
  * segment is blank then null will be returned.
  */
@@ -163,6 +190,10 @@ fun Uri.queryParameters(
         }
 }
 
+/**
+ * A private function that creates a [UriString] from the provided parts. The provided parts are expected to be already
+ * formatted.
+ */
 private fun uriStringFromParts(
     scheme: String,
     userInfo: String? = null,
