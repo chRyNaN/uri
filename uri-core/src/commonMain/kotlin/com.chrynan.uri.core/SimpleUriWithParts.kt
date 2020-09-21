@@ -1,6 +1,6 @@
 package com.chrynan.uri.core
 
-internal data class SimpleUri(
+internal data class SimpleUriWithParts(
     override val scheme: String,
     override val userInfo: String? = null,
     override val host: String? = null,

@@ -15,7 +15,7 @@ fun Uri.Companion.fromParts(
 
     if (authorityIsAbsent and (path.startsWith("/"))) throw InvalidUriException(message = "Provided Path cannot start with an empty Path Segment if there is no Authority present: path = $path")
 
-    return SimpleUri(
+    return SimpleUriWithParts(
         scheme = scheme,
         userInfo = userInfo,
         host = host,
