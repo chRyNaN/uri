@@ -49,7 +49,7 @@ data class SimpleUriWithString(override val uriString: UriString) : Uri {
 
             val pathIndex = substring.indexOf(pathStartDelimiter)
 
-            if (pathIndex != -1) {
+            val relativePath = if (pathIndex != -1) {
                 pathIndex
             } else {
                 val queryIndex = substring.indexOf(queryStartDelimiter)
@@ -57,6 +57,8 @@ data class SimpleUriWithString(override val uriString: UriString) : Uri {
 
                 min(queryIndex, fragmentIndex)
             }
+
+            authorityStartIndex + relativePath
         }
     }
 
@@ -73,10 +75,10 @@ data class SimpleUriWithString(override val uriString: UriString) : Uri {
     override val userInfo: String? by lazy {
         val endIndex = internalAuthority?.indexOf(userInfoEndDelimiter) ?: -1
 
-        if (authorityStartIndex == -1 || endIndex == -1 || endIndex <= authorityStartIndex) {
+        if (endIndex == -1) {
             null
         } else {
-            internalAuthority?.substring(startIndex = authorityStartIndex, endIndex = endIndex)
+            internalAuthority?.substring(startIndex = 0, endIndex = endIndex)
         }
     }
 
@@ -123,7 +125,7 @@ data class SimpleUriWithString(override val uriString: UriString) : Uri {
                 startIndex <= 0 -> null
                 auth[startIndex - 1] == portStartDelimiter -> null
                 else -> {
-                    val portString = auth.substring(startIndex = startIndex)
+                    val portString = auth.substring(startIndex = startIndex + 1)
 
                     portString.toIntOrNull()
                 }
@@ -142,11 +144,13 @@ data class SimpleUriWithString(override val uriString: UriString) : Uri {
 
     override val query: String? by lazy {
         val startIndex = uriString.indexOf(queryStartDelimiter)
+        val fragmentStartIndex = uriString.indexOf(fragmentStartDelimiter)
+        val endIndex = if (fragmentStartIndex == -1) uriString.length else fragmentStartIndex
 
         if (startIndex == -1 || startIndex + 1 >= uriString.length) {
             null
         } else {
-            val result = uriString.substring(startIndex = startIndex + 1)
+            val result = uriString.substring(startIndex = startIndex + 1, endIndex = endIndex)
 
             if (result.isBlank()) {
                 null
