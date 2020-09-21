@@ -1,5 +1,12 @@
 package com.chrynan.uri.core
 
+/**
+ * An implementation of the [Uri] interface using the provided [uriString] to obtain the other parts of the [Uri]. Note
+ * that the provided [uriString] is expected to be validated and formatted properly already. If the provided
+ * [uriString] is not validated and formatted correctly, then the behavior of the other properties and functions is
+ * undefined. The other parts of the [Uri] are obtained from the provided [uriString] using [Regex] or some other
+ * means.
+ */
 data class SimpleUriWithString(override val uriString: UriString) : Uri {
 
     override val scheme: String
