@@ -82,16 +82,6 @@ val Uri.slug: String?
         return s
     }
 
-val Uri.isHierarchical: Boolean
-    get() {
-        if (schemeSpecificPart.startsWith('/')) return true
-
-        return false
-    }
-
-val Uri.isOpaque: Boolean
-    get() = !isHierarchical
-
 val Uri.pathSegments: List<String>
     get() = path.split('/', ignoreCase = true, limit = path.length)
 
