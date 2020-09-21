@@ -39,17 +39,13 @@ interface Uri {
 
             return buildString {
                 if (userInfo != null) {
-                    append(userInfo)
-                    append('@')
+                    append("$userInfo@")
                 }
 
-                if (host != null) {
-                    append(host)
-                }
+                append(host)
 
                 if (port != null) {
-                    append(':')
-                    append(port)
+                    append(":$port")
                 }
             }
         }
