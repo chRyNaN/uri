@@ -1,4 +1,4 @@
-package com.chrynan.uri
+package com.chrynan.uri.core
 
 fun uri(
     scheme: String,

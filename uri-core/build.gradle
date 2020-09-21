@@ -1,0 +1,48 @@
+import com.chrynan.uri.buildSrc.LibraryConstants
+
+apply plugin: "kotlin-multiplatform"
+
+group LibraryConstants.group
+version LibraryConstants.versionName
+
+kotlin {
+    targets {
+        jvm()
+        js()
+        ios()
+    }
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-stdlib-common"
+            }
+        }
+    }
+}
+
+configurations {
+    compileClasspath
+}
+
+publishing {
+    publications {
+        kotlinMultiplatform {
+            artifactId = "uri-core"
+        }
+        jvm {
+            artifactId = "uri-core-jvm"
+        }
+        js {
+            artifactId = "uri-core-js"
+        }
+        iosArm64 {
+            artifactId = "uri-core-ios-arm64"
+        }
+        iosX64 {
+            artifactId = "uri-core-ios-x64"
+        }
+        metadata {
+            artifactId = "uri-core-metadata"
+        }
+    }
+}

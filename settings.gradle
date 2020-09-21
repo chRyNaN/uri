@@ -1,3 +1,5 @@
-rootProject.name = 'uri'
+rootProject.name = "uri"
 
-enableFeaturePreview('GRADLE_METADATA')
+include ":uri-core"
+
+enableFeaturePreview("GRADLE_METADATA")

@@ -1,4 +1,4 @@
-package com.chrynan.uri
+package com.chrynan.uri.core
 
 internal data class SimpleUri(
     override val scheme: String,
