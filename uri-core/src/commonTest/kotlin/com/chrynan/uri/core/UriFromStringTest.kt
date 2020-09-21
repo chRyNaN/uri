@@ -18,5 +18,9 @@ class UriFromStringTest {
         assertEquals(uri.path, "/forum/questions/")
         assertEquals(uri.query, "tag=networking&order=newest")
         assertEquals(uri.fragment, "top")
+        assertEquals(
+            uri.schemeSpecificPart,
+            "//john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top"
+        )
     }
 }
