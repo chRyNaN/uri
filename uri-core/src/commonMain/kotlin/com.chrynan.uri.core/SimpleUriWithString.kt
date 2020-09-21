@@ -11,8 +11,6 @@ data class SimpleUriWithString(override val uriString: UriString) : Uri {
 
     override val scheme: String
         get() = TODO("Not yet implemented")
-    override val authority: String?
-        get() = TODO("Not yet implemented")
     override val userInfo: String?
         get() = TODO("Not yet implemented")
     override val host: String?
@@ -24,7 +22,5 @@ data class SimpleUriWithString(override val uriString: UriString) : Uri {
     override val query: String?
         get() = TODO("Not yet implemented")
     override val fragment: String?
-        get() = TODO("Not yet implemented")
-    override val schemeSpecificPart: String
         get() = TODO("Not yet implemented")
 }
