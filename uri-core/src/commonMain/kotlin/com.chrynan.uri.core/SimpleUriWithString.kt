@@ -73,7 +73,7 @@ data class SimpleUriWithString(override val uriString: UriString) : Uri {
     override val userInfo: String? by lazy {
         val endIndex = internalAuthority?.indexOf(userInfoEndDelimiter) ?: -1
 
-        if (authorityStartIndex == -1 || endIndex == -1) {
+        if (authorityStartIndex == -1 || endIndex == -1 || endIndex <= authorityStartIndex) {
             null
         } else {
             internalAuthority?.substring(startIndex = authorityStartIndex, endIndex = endIndex)
@@ -101,12 +101,36 @@ data class SimpleUriWithString(override val uriString: UriString) : Uri {
                 }
             }
 
-            auth.substring(startIndex = startIndex, endIndex = endIndex)
+            if (endIndex <= startIndex) {
+                null
+            } else {
+                val result = auth.substring(startIndex = startIndex, endIndex = endIndex)
+
+                if (result.isBlank()) {
+                    null
+                } else {
+                    result
+                }
+            }
         }
     }
 
-    override val port: Int?
-        get() = TODO("Not yet implemented")
+    override val port: Int? by lazy {
+        internalAuthority?.let { auth ->
+            val startIndex = auth.lastIndexOf(portStartDelimiter)
+
+            when {
+                startIndex <= 0 -> null
+                auth[startIndex - 1] == portStartDelimiter -> null
+                else -> {
+                    val portString = auth.substring(startIndex = startIndex)
+
+                    portString.toIntOrNull()
+                }
+            }
+        }
+    }
+
     override val path: String
         get() = TODO("Not yet implemented")
     override val query: String?
