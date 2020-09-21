@@ -82,8 +82,12 @@ val Uri.slug: String?
         return s
     }
 
+/**
+ * Retrieves a [List] of [String]s each representing the individual Path Segments of this [Uri]. A Path Segment is a
+ * portion of the [Uri.path] which is separated by slash characters ('/').
+ */
 val Uri.pathSegments: List<String>
-    get() = path.split('/', ignoreCase = true, limit = path.length)
+    get() = path.split('/')
 
 val Uri.queryParameters: Map<String, String>
     get() {
