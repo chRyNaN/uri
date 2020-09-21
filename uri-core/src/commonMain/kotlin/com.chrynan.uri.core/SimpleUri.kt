@@ -46,4 +46,7 @@ internal data class SimpleUri(
                 append(query)
             }
         }
+
+    override val uriString: UriString
+        get() = "$scheme$schemeSpecificPart"
 }

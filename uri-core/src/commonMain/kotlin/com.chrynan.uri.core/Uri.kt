@@ -13,4 +13,5 @@ interface Uri {
     val query: String?
     val fragment: String?
     val schemeSpecificPart: String
+    val uriString: UriString
 }
