@@ -99,7 +99,8 @@ interface Uri {
      * authority component.[12] The final segment of the path may be referred to as a 'slug'.
      * <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">Wikipedia URI Source</a>
      *
-     * This property will return the Path component of the [Uri] including any slash ('/') characters.
+     * This property will return the Path component of the [Uri] including any slash ('/') characters. If there is an
+     * [authority] then this [path] should begin with a slash ('/') character.
      */
     val path: String
 
