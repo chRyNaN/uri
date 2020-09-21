@@ -2,6 +2,11 @@
 
 package com.chrynan.uri.core
 
+import com.chrynan.validator.UrlValidator
+import com.chrynan.validator.ValidationResult
+
+private val validator = UrlValidator()
+
 /**
  * Retrieves a [Uri] from the provided parts. If the provided parts are valid and properly formatted, then a [Uri] is
  * returned. If the provided parts are invalid or not properly formatted, then an [InvalidUriException] is thrown.
@@ -18,18 +23,59 @@ fun Uri.Companion.fromParts(
     query: String? = null,
     fragment: String? = null
 ): Uri {
-    val authorityIsAbsent = (userInfo == null) and (host == null) and (port == null)
+    if (host == null && (userInfo != null || port != null)) throw InvalidUriException(message = "If userInfo or port fields are provided, then the host must be provided too.")
 
-    if (authorityIsAbsent and (path.startsWith("/"))) throw InvalidUriException(message = "Provided Path cannot start with an empty Path Segment if there is no Authority present: path = $path")
+    val formattedScheme = when {
+        scheme.endsWith("://") -> scheme.substringBefore("://")
+        scheme.endsWith(":") -> scheme.substringBefore(":")
+        else -> scheme
+    }
+
+    val formattedUserInfo = when {
+        userInfo.isNullOrBlank() -> null
+        userInfo.endsWith('@') -> userInfo.substringBefore('@')
+        else -> userInfo
+    }
+
+    val formattedHost = when {
+        host.isNullOrBlank() -> null
+        host.startsWith('@') -> host.substringAfter('@')
+        host.startsWith("://") -> host.substringAfter("://")
+        else -> host
+    }
+
+    val formattedPath = when {
+        host.isNullOrBlank() && path.startsWith('/') -> path.substringAfter('/')
+        !host.isNullOrBlank() && !path.startsWith('/') -> "/$path"
+        else -> path
+    }
+
+    val formattedQuery = if (query.isNullOrBlank()) null else query
+
+    val formattedFragment = if (fragment.isNullOrBlank()) null else fragment
+
+    val uriString = uriStringFromParts(
+        scheme = formattedScheme,
+        userInfo = formattedUserInfo,
+        host = formattedHost,
+        port = port,
+        path = formattedPath,
+        query = formattedQuery,
+        fragment = formattedFragment
+    )
+
+    val result = validator.validate(uriString)
+
+    if (result is ValidationResult.Invalid) throw InvalidUriException(message = "Invalid Uri from String = $uriString. Errors = ${result.errors}")
 
     return SimpleUriWithParts(
-        scheme = scheme,
-        userInfo = userInfo,
-        host = host,
+        scheme = formattedScheme,
+        userInfo = formattedUserInfo,
+        host = formattedHost,
         port = port,
-        path = path,
-        query = query,
-        fragment = fragment
+        path = formattedPath,
+        query = formattedQuery,
+        fragment = formattedFragment
     )
 }
 
@@ -115,4 +161,42 @@ fun Uri.queryParameters(
 
             key to value
         }
+}
+
+private fun uriStringFromParts(
+    scheme: String,
+    userInfo: String? = null,
+    host: String? = null,
+    port: Int? = null,
+    path: String,
+    query: String? = null,
+    fragment: String? = null
+): UriString = buildString {
+    append(scheme)
+
+    if (host != null) {
+        append("://")
+
+        if (userInfo != null) {
+            append("$userInfo@")
+        }
+
+        append(host)
+
+        if (port != null) {
+            append(":$port")
+        }
+    } else {
+        append(":")
+    }
+
+    append(path)
+
+    if (query != null) {
+        append("?$query")
+    }
+
+    if (fragment != null) {
+        append("#$fragment")
+    }
 }
