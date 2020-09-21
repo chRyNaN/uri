@@ -34,6 +34,25 @@ interface Uri {
      * [userInfo] or [port] are included, then the [host] must be included.
      */
     val authority: String?
+        get() {
+            if (host == null) return null
+
+            return buildString {
+                if (userInfo != null) {
+                    append(userInfo)
+                    append('@')
+                }
+
+                if (host != null) {
+                    append(host)
+                }
+
+                if (port != null) {
+                    append(':')
+                    append(port)
+                }
+            }
+        }
 
     /**
      * A [Uri] UserInfo subcomponent is a portion of the [authority] component. It is an optional subcomponent that may
