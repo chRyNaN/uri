@@ -16,8 +16,8 @@ kotlin {
             dependencies {
                 implementation "org.jetbrains.kotlin:kotlin-stdlib-common"
 
-                implementation "com.chrynan.validator:validator-core:0.2.0"
-                implementation "com.chrynan.validator:validator-web:0.2.0"
+                implementation "com.chrynan.validator:validator-core:0.3.0"
+                implementation "com.chrynan.validator:validator-web:0.3.0"
             }
         }
         commonTest {

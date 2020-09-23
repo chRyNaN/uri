@@ -2,10 +2,10 @@
 
 package com.chrynan.uri.core
 
-import com.chrynan.validator.UrlValidator
+import com.chrynan.validator.UriValidator
 import com.chrynan.validator.ValidationResult
 
-private val validator = UrlValidator()
+private val validator = UriValidator()
 
 /**
  * Retrieves a [Uri] from the provided [uriString]. If the provided [uriString] is valid and properly formatted, then a
