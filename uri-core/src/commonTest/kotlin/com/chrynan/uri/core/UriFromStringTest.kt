@@ -112,15 +112,15 @@ class UriFromStringTest {
 
         assertEquals(actual = uri.scheme, expected = "telnet")
         assertEquals(actual = uri.userInfo, expected = null)
-        assertEquals(actual = uri.host, expected = "192.0.2.16:80")
-        assertEquals(actual = uri.port, expected = null)
+        assertEquals(actual = uri.host, expected = "192.0.2.16")
+        assertEquals(actual = uri.port, expected = 80)
         assertEquals(actual = uri.authority, expected = "192.0.2.16:80")
         assertEquals(actual = uri.path, expected = "/")
         assertEquals(actual = uri.query, expected = null)
         assertEquals(actual = uri.fragment, expected = null)
         assertEquals(
             actual = uri.schemeSpecificPart,
-            expected = "192.0.2.16:80/"
+            expected = "//192.0.2.16:80/"
         )
         assertEquals(actual = uri.uriString, expected = uriString)
     }
