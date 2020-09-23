@@ -2,6 +2,7 @@ package com.chrynan.uri.core
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 
 class UriFromStringTest {
 
@@ -143,5 +144,27 @@ class UriFromStringTest {
             expected = "oasis:names:specification:docbook:dtd:xml:4.1.2"
         )
         assertEquals(actual = uri.uriString, expected = uriString)
+    }
+
+    @Test
+    fun invalidUriFromStringThrows() {
+        var exception: InvalidUriException? = null
+
+        try {
+            val uriString = "InvalidUri"
+            Uri.fromString(uriString)
+        } catch (throwable: InvalidUriException) {
+            exception = throwable
+        }
+
+        assertNotNull(exception)
+    }
+
+    @Test
+    fun invalidUriFromStringOrNullReturnsNull() {
+        val uriString = "InvalidUri"
+        val result = Uri.fromStringOrNull(uriString)
+
+        assertEquals(expected = null, actual = result)
     }
 }

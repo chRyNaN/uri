@@ -29,7 +29,11 @@ private val uriPartsRegex = Regex("^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#
  * @see [UriString]
  */
 fun Uri.Companion.fromString(uriString: UriString): Uri {
-    val scheme = uriString.substringBefore(SCHEME_END_DELIMITER)
+    val schemeEndIndex = uriString.indexOf(SCHEME_END_DELIMITER)
+
+    if (schemeEndIndex == -1) throw InvalidUriException(message = "Invalid Uri from String = $uriString. The UriString is missing a Scheme component.")
+
+    val scheme = uriString.substring(startIndex = 0, endIndex = schemeEndIndex)
 
     val isHttpUrl = URL_SCHEMES.any { it.toLowerCase() == scheme.toLowerCase() }
 
