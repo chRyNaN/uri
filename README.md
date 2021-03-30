@@ -1,37 +1,50 @@
 # uri
-A Kotlin Multi-platform Utility Library for [Uniform Resource Identifiers (URIs)](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier).
 
-## Creating a Uri
+A Kotlin Multi-platform Utility Library
+for [Uniform Resource Identifiers (URIs)](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier). <br/>
+<img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/chRyNaN/uri">
+
+```kotlin
+Uri.fromString("https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top")
+```
+
+## Using the library
+
 Consider the following Uri: **https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top**
 
 ### Creating a Uri:
+
 ```kotlin
 Uri.fromParts(
-  scheme = "https",
-  fragment = "top",
-  path = "/forum/questions/",
-  query = "tag=networking&order=newest",
-  userInfo = "john.doe",
-  host = "www.example.com",
-  port = 123
+    scheme = "https",
+    fragment = "top",
+    path = "/forum/questions/",
+    query = "tag=networking&order=newest",
+    userInfo = "john.doe",
+    host = "www.example.com",
+    port = 123
 )
 ```
 
 ### Creating an optional Uri:
-If an error is encountered with the `Uri.fromParts` function, then an exception is thrown. Instead of throwing an exception, null can be returned, using the `Uri.fromPartsOrNull` function.
+
+If an error is encountered with the `Uri.fromParts` function, then an exception is thrown. Instead of throwing an
+exception, null can be returned, using the `Uri.fromPartsOrNull` function.
+
 ```kotlin
 Uri.fromPartsOrNull(
-  scheme = "https",
-  fragment = "top",
-  path = "/forum/questions/",
-  query = "tag=networking&order=newest",
-  userInfo = "john.doe",
-  host = "www.example.com",
-  port = 123
+    scheme = "https",
+    fragment = "top",
+    path = "/forum/questions/",
+    query = "tag=networking&order=newest",
+    userInfo = "john.doe",
+    host = "www.example.com",
+    port = 123
 )
 ```
 
 ### Creating a Uri from a String:
+
 This library has a typealias, `UriString`, which is just a `String`. A `UriString` can be parsed and turned into a `Uri`.
 
 ```kotlin
@@ -39,43 +52,43 @@ Uri.fromString(uriString = "https://john.doe@www.example.com:123/forum/questions
 ```
 
 ### Creating an optional Uri from a String:
-If an error is encountered with the `Uri.fromString` function, then an exception is thrown. Instead of throwing an exception, null can be returned, using the `Uri.fromStringOrNull` function.
+
+If an error is encountered with the `Uri.fromString` function, then an exception is thrown. Instead of throwing an
+exception, null can be returned, using the `Uri.fromStringOrNull` function.
+
 ```kotlin
 Uri.fromStringOrNull(uriString = "https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top")
 ```
 
 ## Building
 
-The library is provided through [Bintray](https://bintray.com/). Refer to the [releases page](https://github.com/chRyNaN/uri/releases) for the latest version.
+The library is provided through [Repsy.io](https://repsy.io). Refer to
+the [releases page](https://github.com/chRyNaN/uri/releases) for the latest version. <br/>
+<img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/chRyNaN/uri">
 
 ### Repository
+
 ```kotlin
 repositories {
-    maven {
-        url = uri("https://dl.bintray.com/chrynan/chrynan")
-    }
+    maven { url = "https://repo.repsy.io/mvn/chrynan/public" }
 }
 ```
 
 ### Dependencies
-**Kotlin Common Core Module:**
+
 ```kotlin
 implementation("com.chrynan.uri:uri-core:$VERSION")
 ```
 
-**Kotlin JVM Module:**
-```kotlin
-implementation("com.chrynan.uri:uri-core-jvm:$VERSION")
-```
+## Documentation
 
-**Kotlin JS Module:**
-```kotlin
-implementation("com.chrynan.uri:uri-core-js:$VERSION")
-```
+More detailed documentation is available in the [docs](docs) folder. The entry point to the documentation can be
+found [here](docs/index.md).
 
 ## License
+
 ```
-Copyright 2020 chRyNaN
+Copyright 2021 chRyNaN
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

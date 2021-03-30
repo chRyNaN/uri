@@ -2,10 +2,12 @@ package com.chrynan.uri.core
 
 /**
  * A [Uri] is a sequence of characters the uniquely identifies a particular resource, such as, a web address (URL). For
- * example, a URL is a form of a [Uri].
+ * example, a URL is a subset of a [Uri].
  *
  * For more information about URIs, refer to the following resource:
  * https://en.wikipedia.org/wiki/Uniform_Resource_Identifier
+ *
+ * @see [URI Documentation](ttps://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
  */
 interface Uri {
 
