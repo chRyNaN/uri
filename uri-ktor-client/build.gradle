@@ -19,6 +19,8 @@ kotlin {
             dependencies {
                 implementation "org.jetbrains.kotlin:kotlin-stdlib-common"
 
+                api project(":uri-core")
+
                 api "io.ktor:ktor-client-core:1.5.2"
             }
         }

@@ -7,7 +7,7 @@ package com.chrynan.uri.core
  * For more information about URIs, refer to the following resource:
  * https://en.wikipedia.org/wiki/Uniform_Resource_Identifier
  *
- * @see [URI Documentation](ttps://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
+ * @see [URI Documentation](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
  */
 interface Uri {
 
