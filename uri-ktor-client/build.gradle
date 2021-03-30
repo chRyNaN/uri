@@ -21,7 +21,7 @@ kotlin {
 
                 api project(":uri-core")
 
-                api "io.ktor:ktor-client-core:1.5.2"
+                implementation "io.ktor:ktor-client-core:1.5.2"
             }
         }
     }

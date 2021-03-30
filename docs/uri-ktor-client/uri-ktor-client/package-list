@@ -1,0 +1,9 @@
+$dokka.format:gfm-v1
+$dokka.linkExtension:md
+$dokka.location:com.chrynan.uri.ktor////PointingToDeclaration/uri-ktor-client/com.chrynan.uri.ktor/index.md
+$dokka.location:com.chrynan.uri.ktor//toUri/io.ktor.http.Url#/PointingToDeclaration/uri-ktor-client/com.chrynan.uri.ktor/to-uri.md
+$dokka.location:com.chrynan.uri.ktor//toUriOrNull/io.ktor.http.Url#/PointingToDeclaration/uri-ktor-client/com.chrynan.uri.ktor/to-uri-or-null.md
+$dokka.location:com.chrynan.uri.ktor//toUrl/com.chrynan.uri.core.Uri#/PointingToDeclaration/uri-ktor-client/com.chrynan.uri.ktor/to-url.md
+$dokka.location:com.chrynan.uri.ktor//toUrlOrNull/com.chrynan.uri.core.Uri#/PointingToDeclaration/uri-ktor-client/com.chrynan.uri.ktor/to-url-or-null.md
+com.chrynan.uri.ktor
+
