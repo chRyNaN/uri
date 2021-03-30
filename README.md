@@ -45,7 +45,8 @@ Uri.fromPartsOrNull(
 
 ### Creating a Uri from a String:
 
-This library has a typealias, `UriString`, which is just a `String`. A `UriString` can be parsed and turned into a `Uri`.
+This library has a typealias, `UriString`, which is just a `String`. A `UriString` can be parsed and turned into a `Uri`
+.
 
 ```kotlin
 Uri.fromString(uriString = "https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top")
@@ -78,6 +79,10 @@ repositories {
 
 ```kotlin
 implementation("com.chrynan.uri:uri-core:$VERSION")
+```
+
+```kotlin
+implementation("com.chrynan.uri:uri-ktor-client:$VERSION")
 ```
 
 ## Documentation
