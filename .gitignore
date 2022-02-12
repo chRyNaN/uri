@@ -16,6 +16,8 @@
 **/.idea/fileTemplates
 **/.idea/dictionaries
 **/.idea/caches
+.idea/**
+**/.idea/**
 local.properties
 /captures
 .externalNativeBuild
