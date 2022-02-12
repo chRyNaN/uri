@@ -35,7 +35,7 @@ fun Uri.Companion.fromString(uriString: UriString): Uri {
 
     val scheme = uriString.substring(startIndex = 0, endIndex = schemeEndIndex)
 
-    val isHttpUrl = URL_SCHEMES.any { it.toLowerCase() == scheme.toLowerCase() }
+    val isHttpUrl = URL_SCHEMES.any { it.lowercase() == scheme.lowercase() }
 
     when (val validationResult =
         if (isHttpUrl) urlValidator.validate(uriString) else uriValidator.validate(uriString)) {
@@ -176,7 +176,7 @@ fun Uri.Companion.fromParts(
         fragment = formattedFragment
     )
 
-    val validationResult = if (URL_SCHEMES.any { it.toLowerCase() == formattedScheme.toLowerCase() }) {
+    val validationResult = if (URL_SCHEMES.any { it.lowercase() == formattedScheme.lowercase() }) {
         urlValidator.validate(uriString)
     } else {
         uriValidator.validate(uriString)
@@ -280,11 +280,11 @@ private fun createUriFromValidatedParts(
     fragment: String? = null
 ): Uri = SimpleUri(
     uriString = uriString,
-    scheme = scheme.toLowerCase(),
+    scheme = scheme.lowercase(),
     userInfo = if (userInfo.isNullOrBlank()) null else userInfo,
     host = if (host.isNullOrBlank()) null else host,
     port = port,
-    path = if (path.isBlank()) "" else path,
+    path = path.ifBlank { "" },
     query = if (query.isNullOrBlank()) null else query,
     fragment = if (fragment.isNullOrBlank()) null else fragment
 )

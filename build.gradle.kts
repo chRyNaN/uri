@@ -8,7 +8,6 @@ buildscript {
         google()
         mavenCentral()
         maven { url = uri("https://repo.repsy.io/mvn/chrynan/public") }
-        maven { url = uri("https://dl.bintray.com/chrynan/chrynan") }
     }
     dependencies {
         classpath("com.android.tools.build:gradle:4.2.2")
@@ -24,9 +23,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { url = uri("https://jitpack.io") }
         maven { url = uri("https://repo.repsy.io/mvn/chrynan/public") }
-        maven { url = uri("https://dl.bintray.com/chrynan/chrynan") }
     }
 }
 
