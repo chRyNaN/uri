@@ -50,7 +50,8 @@ fun Uri.queryParameters(
         .associate {
             val equalsIndex = it.indexOf(char = '=')
             val key = if (equalsIndex == -1) it else it.substring(startIndex = 0, endIndex = equalsIndex)
-            val value = if (equalsIndex == -1) null else it.substring(startIndex = equalsIndex)
+            val value =
+                if (equalsIndex == -1 || equalsIndex + 1 > it.lastIndex) null else it.substring(startIndex = equalsIndex + 1)
 
             key to value
         }

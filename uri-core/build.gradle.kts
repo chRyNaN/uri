@@ -25,12 +25,17 @@ kotlin {
         ios()
     }
     sourceSets {
-        commonMain {
+        val commonMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlin:kotlin-stdlib-common")
 
                 implementation("com.chrynan.validator:validator-core:0.4.1")
                 implementation("com.chrynan.validator:validator-web:0.4.1")
+            }
+        }
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
             }
         }
     }

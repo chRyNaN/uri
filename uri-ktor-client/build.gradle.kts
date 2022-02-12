@@ -25,7 +25,7 @@ kotlin {
         ios()
     }
     sourceSets {
-        commonMain {
+        val commonMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlin:kotlin-stdlib-common")
 
