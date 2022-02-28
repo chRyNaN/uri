@@ -23,6 +23,7 @@ kotlin {
             nodejs()
         }
         ios()
+        iosSimulatorArm64()
     }
     sourceSets {
         val commonMain by getting {
