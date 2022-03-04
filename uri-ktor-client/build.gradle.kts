@@ -23,6 +23,7 @@ kotlin {
             nodejs()
         }
         ios()
+        iosSimulatorArm64()
     }
     sourceSets {
         val commonMain by getting {
@@ -34,6 +35,9 @@ kotlin {
                 implementation("io.ktor:ktor-client-core:1.6.7")
             }
         }
+        val iosMain by sourceSets.getting
+        val iosSimulatorArm64Main by sourceSets.getting
+        iosSimulatorArm64Main.dependsOn(iosMain)
     }
 }
 
