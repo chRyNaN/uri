@@ -32,7 +32,7 @@ kotlin {
 
                 api(project(":uri-core"))
 
-                implementation("io.ktor:ktor-client-core:1.6.7")
+                implementation("io.ktor:ktor-client-core:2.1.0")
             }
         }
         val iosMain by sourceSets.getting
