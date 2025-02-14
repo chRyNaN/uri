@@ -59,8 +59,8 @@ fun Uri.Companion.fromString(uriString: UriString): Uri {
             val userInfo =
                 if (userInfoEndIndex == -1) null else authority?.substring(startIndex = 0, endIndex = userInfoEndIndex)
 
-            val host = authority?.let {
-                val hostStartIndex = if (userInfoEndIndex == -1) 0 else userInfoEndIndex + 1
+            val hostStartIndex = if (userInfoEndIndex == -1) 0 else userInfoEndIndex + 1
+            val host = authority?.substring(hostStartIndex)?.let {
                 var hostIpv6EndIndex = it.indexOf(HOST_IPV6_END_DELIMITER)
                 var portStartIndex = it.indexOf(PORT_START_DELIMITER)
 
