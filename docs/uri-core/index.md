@@ -1,13 +1,9 @@
 //[uri-core](index.md)
 
+# uri-core
 
+## Packages
 
-# uri-core  
-
-
-## Packages  
-  
-|  Name | 
+| Name |
 |---|
-| <a name="com.chrynan.uri.core////PointingToDeclaration/"></a>[com.chrynan.uri.core](uri-core/com.chrynan.uri.core/index.md)|
-
+| [com.chrynan.uri.core](uri-core/com.chrynan.uri.core/index.md) |

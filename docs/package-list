@@ -1,0 +1,57 @@
+$dokka.format:gfm-v1
+$dokka.linkExtension:md
+$dokka.location:com.chrynan.uri.core////PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/index.md
+$dokka.location:com.chrynan.uri.core//Default/com.chrynan.uri.core.UriParser.Companion#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-default.md
+$dokka.location:com.chrynan.uri.core//fromParts/com.chrynan.uri.core.Uri.Companion#kotlin.String#kotlin.String?#kotlin.String?#kotlin.Int?#kotlin.String#kotlin.String?#kotlin.String?/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/from-parts.md
+$dokka.location:com.chrynan.uri.core//fromPartsOrNull/com.chrynan.uri.core.Uri.Companion#kotlin.String#kotlin.String?#kotlin.String?#kotlin.Int?#kotlin.String#kotlin.String?#kotlin.String?/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/from-parts-or-null.md
+$dokka.location:com.chrynan.uri.core//parse/com.chrynan.uri.core.UriParser#kotlin.String/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/parse.md
+$dokka.location:com.chrynan.uri.core//parseOrNull/com.chrynan.uri.core.UriParser#com.chrynan.uri.core.UriString/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/parse-or-null.md
+$dokka.location:com.chrynan.uri.core//parseOrNull/com.chrynan.uri.core.UriParser#kotlin.String/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/parse-or-null.md
+$dokka.location:com.chrynan.uri.core//pathSegments/com.chrynan.uri.core.Uri#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/path-segments.md
+$dokka.location:com.chrynan.uri.core//queryParameters/com.chrynan.uri.core.Uri#kotlin.CharArray#kotlin.Boolean/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/query-parameters.md
+$dokka.location:com.chrynan.uri.core//slug/com.chrynan.uri.core.Uri#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/slug.md
+$dokka.location:com.chrynan.uri.core//stringSerializer/com.chrynan.uri.core.Uri.Companion#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/string-serializer.md
+$dokka.location:com.chrynan.uri.core//unsafeFromParts/com.chrynan.uri.core.Uri.Companion#kotlin.String#kotlin.String?#kotlin.String?#kotlin.Int?#kotlin.String#kotlin.String?#kotlin.String?/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/unsafe-from-parts.md
+$dokka.location:com.chrynan.uri.core/ExperimentalUriApi///PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-experimental-uri-api/index.md
+$dokka.location:com.chrynan.uri.core/InvalidUriException///PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-invalid-uri-exception/index.md
+$dokka.location:com.chrynan.uri.core/InvalidUriException/InvalidUriException/#kotlin.String?#kotlin.Exception?/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-invalid-uri-exception/-invalid-uri-exception.md
+$dokka.location:com.chrynan.uri.core/InvalidUriException/message/#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-invalid-uri-exception/message.md
+$dokka.location:com.chrynan.uri.core/Uri.Companion///PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri/-companion/index.md
+$dokka.location:com.chrynan.uri.core/Uri.Companion/generalDelimiters/#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri/-companion/general-delimiters.md
+$dokka.location:com.chrynan.uri.core/Uri.Companion/isGeneralDelimiter/kotlin.Char#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri/-companion/is-general-delimiter.md
+$dokka.location:com.chrynan.uri.core/Uri.Companion/isReserved/kotlin.Char#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri/-companion/is-reserved.md
+$dokka.location:com.chrynan.uri.core/Uri.Companion/isSubDelimiter/kotlin.Char#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri/-companion/is-sub-delimiter.md
+$dokka.location:com.chrynan.uri.core/Uri.Companion/reserved/#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri/-companion/reserved.md
+$dokka.location:com.chrynan.uri.core/Uri.Companion/subDelimiters/#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri/-companion/sub-delimiters.md
+$dokka.location:com.chrynan.uri.core/Uri///PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri/index.md
+$dokka.location:com.chrynan.uri.core/Uri/authority/#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri/authority.md
+$dokka.location:com.chrynan.uri.core/Uri/fragment/#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri/fragment.md
+$dokka.location:com.chrynan.uri.core/Uri/host/#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri/host.md
+$dokka.location:com.chrynan.uri.core/Uri/path/#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri/path.md
+$dokka.location:com.chrynan.uri.core/Uri/port/#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri/port.md
+$dokka.location:com.chrynan.uri.core/Uri/query/#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri/query.md
+$dokka.location:com.chrynan.uri.core/Uri/scheme/#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri/scheme.md
+$dokka.location:com.chrynan.uri.core/Uri/schemeSpecificPart/#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri/scheme-specific-part.md
+$dokka.location:com.chrynan.uri.core/Uri/toUriString/#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri/to-uri-string.md
+$dokka.location:com.chrynan.uri.core/Uri/userInfo/#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri/user-info.md
+$dokka.location:com.chrynan.uri.core/UriAsStringSerializer///PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri-as-string-serializer/index.md
+$dokka.location:com.chrynan.uri.core/UriAsStringSerializer/descriptor/#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri-as-string-serializer/descriptor.md
+$dokka.location:com.chrynan.uri.core/UriAsStringSerializer/deserialize/#kotlinx.serialization.encoding.Decoder/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri-as-string-serializer/deserialize.md
+$dokka.location:com.chrynan.uri.core/UriAsStringSerializer/serialize/#kotlinx.serialization.encoding.Encoder#com.chrynan.uri.core.Uri/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri-as-string-serializer/serialize.md
+$dokka.location:com.chrynan.uri.core/UriParseException///PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri-parse-exception/index.md
+$dokka.location:com.chrynan.uri.core/UriParseException/UriParseException/#kotlin.String?#kotlin.Throwable?/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri-parse-exception/-uri-parse-exception.md
+$dokka.location:com.chrynan.uri.core/UriParser.Companion///PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri-parser/-companion/index.md
+$dokka.location:com.chrynan.uri.core/UriParser///PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri-parser/index.md
+$dokka.location:com.chrynan.uri.core/UriParser/parse/#com.chrynan.uri.core.UriString/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri-parser/parse.md
+$dokka.location:com.chrynan.uri.core/UriString///PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri-string/index.md
+$dokka.location:com.chrynan.uri.core/UriString/UriString/#kotlin.String/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri-string/-uri-string.md
+$dokka.location:com.chrynan.uri.core/UriString/value/#/PointingToDeclaration/uri-core/uri-core/com.chrynan.uri.core/-uri-string/value.md
+$dokka.location:com.chrynan.uri.ktor////PointingToDeclaration/uri-ktor-client/uri-ktor-client/com.chrynan.uri.ktor/index.md
+$dokka.location:com.chrynan.uri.ktor//toUri/io.ktor.http.Url#/PointingToDeclaration/uri-ktor-client/uri-ktor-client/com.chrynan.uri.ktor/to-uri.md
+$dokka.location:com.chrynan.uri.ktor//toUriOrNull/io.ktor.http.Url#/PointingToDeclaration/uri-ktor-client/uri-ktor-client/com.chrynan.uri.ktor/to-uri-or-null.md
+$dokka.location:com.chrynan.uri.ktor//toUrl/com.chrynan.uri.core.Uri#/PointingToDeclaration/uri-ktor-client/uri-ktor-client/com.chrynan.uri.ktor/to-url.md
+$dokka.location:com.chrynan.uri.ktor//toUrlOrNull/com.chrynan.uri.core.Uri#/PointingToDeclaration/uri-ktor-client/uri-ktor-client/com.chrynan.uri.ktor/to-url-or-null.md
+module:uri-core
+com.chrynan.uri.core
+module:uri-ktor-client
+com.chrynan.uri.ktor
