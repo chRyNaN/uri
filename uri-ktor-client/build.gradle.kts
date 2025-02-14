@@ -1,52 +1,31 @@
-import com.chrynan.uri.buildSrc.LibraryConstants
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("multiplatform")
     id("com.android.library")
-    id("maven-publish")
     id("org.jetbrains.dokka")
+    id("uri.multiplatform")
+    id("uri.publish")
 }
 
-group = LibraryConstants.group
-version = LibraryConstants.versionName
-
 kotlin {
-    android {
-        publishAllLibraryVariants()
-    }
-    targets {
-        android()
-        jvm()
-        js(BOTH) {
-            browser()
-            nodejs()
-        }
-        ios()
-        iosSimulatorArm64()
-    }
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlin:kotlin-stdlib-common")
-
                 api(project(":uri-core"))
 
-                implementation("io.ktor:ktor-client-core:2.1.0")
+                implementation("io.ktor:ktor-client-core:_")
             }
         }
-        val iosMain by sourceSets.getting
-        val iosSimulatorArm64Main by sourceSets.getting
-        iosSimulatorArm64Main.dependsOn(iosMain)
     }
 }
 
 android {
-    compileSdk = LibraryConstants.Android.compileSdkVersion
+    compileSdk = BuildConstants.Android.compileSdkVersion
+    namespace = "com.chrynan.uri.ktor"
 
     defaultConfig {
-        minSdk = LibraryConstants.Android.minSdkVersion
-        targetSdk = LibraryConstants.Android.targetSdkVersion
+        minSdk = BuildConstants.Android.minSdkVersion
+        targetSdk = BuildConstants.Android.targetSdkVersion
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -70,28 +49,6 @@ android {
             )
         }
     }
-
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    sourceSets["main"].java.srcDirs("src/androidMain/kotlin")
-    sourceSets["main"].res.srcDirs("src/androidMain/res")
-
-    sourceSets["test"].java.srcDirs("src/androidTest/kotlin")
-    sourceSets["test"].res.srcDirs("src/androidTest/res")
 }
 
 tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.INHERIT }
-
-afterEvaluate {
-    publishing {
-        repositories {
-            maven {
-                url = uri("https://repo.repsy.io/mvn/chrynan/public")
-
-                credentials {
-                    username = (project.findProperty("repsyUsername") ?: System.getenv("repsyUsername")) as? String
-                    password = (project.findProperty("repsyToken") ?: System.getenv("repsyToken")) as? String
-                }
-            }
-        }
-    }
-}

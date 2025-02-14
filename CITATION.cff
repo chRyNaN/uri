@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+      website: "https://github.com/chRyNaN"
+contact:
+      website: "https://github.com/chRyNaN"
+title: "uri"
+type: "software"
+abstract: "A Kotlin Multiplatform Utility Library for Uniform Resource Identifiers (URIs)"
+license: "Apache-2.0"
+keywords:
+    - "kotlin"
+    - "multiplatform"
+    - "uri"
+    - "kotlin multiplatform"
+repository-code: "https://github.com/chRyNaN/uri"
+url: "https://github.com/chRyNaN/uri"

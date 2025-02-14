@@ -1,12 +1,10 @@
 pluginManagement {
     repositories {
         gradlePluginPortal()
-        google()
+        maven("https://plugins.gradle.org/m2/")
         mavenCentral()
-        maven("https://repo.repsy.io/mvn/mooncloak/public")
+        google()
     }
-
-    includeBuild("build-logic")
 }
 
 dependencyResolutionManagement {
@@ -14,18 +12,17 @@ dependencyResolutionManagement {
     repositories {
         mavenCentral()
         google()
+        gradlePluginPortal()
         maven("https://repo.repsy.io/mvn/mooncloak/public")
     }
 }
 
 plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.9.0"
-
+    // This is the plugin we use to handle our dependency versions. See the versions.properties file for the latest versions.
     // See https://jmfayard.github.io/refreshVersions
     id("de.fayard.refreshVersions") version "0.60.5"
+
+    // See root build.gradle.kts file for the rest of the plugins applied.
 }
 
-rootProject.name = "uri"
-
-include(":uri-core")
-include(":uri-ktor-client")
+rootProject.name = "build-logic"
