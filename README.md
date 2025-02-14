@@ -5,14 +5,14 @@ for [Uniform Resource Identifiers (URIs)](https://en.wikipedia.org/wiki/Uniform_
 <img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/chRyNaN/uri">
 
 ```kotlin
-Uri.fromString("https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top")
+Uri.parse("https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top")
 ```
 
 ## Using the library
 
 Consider the following Uri: **https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top**
 
-### Creating a Uri:
+### Creating a Uri from parts:
 
 ```kotlin
 Uri.fromParts(
@@ -26,7 +26,7 @@ Uri.fromParts(
 )
 ```
 
-### Creating an optional Uri:
+### Creating an optional Uri from parts:
 
 If an error is encountered with the `Uri.fromParts` function, then an exception is thrown. Instead of throwing an
 exception, null can be returned, using the `Uri.fromPartsOrNull` function.
@@ -45,11 +45,8 @@ Uri.fromPartsOrNull(
 
 ### Creating a Uri from a String:
 
-This library has a typealias, `UriString`, which is just a `String`. A `UriString` can be parsed and turned into a `Uri`
-.
-
 ```kotlin
-Uri.fromString(uriString = "https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top")
+Uri.parse(uriString = "https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top")
 ```
 
 ### Creating an optional Uri from a String:
@@ -58,7 +55,7 @@ If an error is encountered with the `Uri.fromString` function, then an exception
 exception, null can be returned, using the `Uri.fromStringOrNull` function.
 
 ```kotlin
-Uri.fromStringOrNull(uriString = "https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top")
+Uri.parseOrNull(uriString = "https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top")
 ```
 
 ## Building
