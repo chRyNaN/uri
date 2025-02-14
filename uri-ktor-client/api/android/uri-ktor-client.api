@@ -1,0 +1,7 @@
+public final class com/chrynan/uri/ktor/UriKtorConversionUtilsKt {
+	public static final fun toUri (Lio/ktor/http/Url;)Lcom/chrynan/uri/core/Uri;
+	public static final fun toUriOrNull (Lio/ktor/http/Url;)Lcom/chrynan/uri/core/Uri;
+	public static final fun toUrl (Lcom/chrynan/uri/core/Uri;)Lio/ktor/http/Url;
+	public static final fun toUrlOrNull (Lcom/chrynan/uri/core/Uri;)Lio/ktor/http/Url;
+}
+

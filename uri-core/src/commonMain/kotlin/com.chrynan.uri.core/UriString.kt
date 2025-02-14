@@ -9,4 +9,4 @@ package com.chrynan.uri.core
  *
  * Note that [UriString] is just a typealias to [String].
  */
-typealias UriString = String
+public typealias UriString = String

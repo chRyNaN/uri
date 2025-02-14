@@ -6,7 +6,7 @@ package com.chrynan.uri.core
  * Retrieves the final path segment of the [Uri.path] without the preceding slash character ('/'). If the final path
  * segment is blank then null will be returned.
  */
-val Uri.slug: String?
+public val Uri.slug: String?
     get() {
         val i = path.lastIndexOf(char = '/')
 
@@ -26,7 +26,7 @@ val Uri.slug: String?
  * portion of the [Uri.path] component which is separated by slash characters ('/'). If there are no Path Segments,
  * then this will return an empty [List].
  */
-val Uri.pathSegments: List<String>
+public val Uri.pathSegments: List<String>
     get() = path.split('/')
 
 /**
@@ -40,7 +40,7 @@ val Uri.pathSegments: List<String>
  * @param [delimiters] The delimiters that separate the Query Parameters in the [Uri.query] component.
  * @param [ignoreCase] Whether to ignore the case (upper/lower) of the delimiters or not.
  */
-fun Uri.queryParameters(
+public fun Uri.queryParameters(
     vararg delimiters: Char = charArrayOf('&', ';'),
     ignoreCase: Boolean = true
 ): Map<String, String?> {

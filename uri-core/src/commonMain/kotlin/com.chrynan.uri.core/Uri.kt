@@ -9,13 +9,7 @@ package com.chrynan.uri.core
  *
  * @see [URI Documentation](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
  */
-interface Uri {
-
-    /**
-     * The companion object for the [Uri] interface. This is useful for creating extension functions related to the
-     * creation of a [Uri].
-     */
-    companion object
+public interface Uri {
 
     /**
      * A [Uri] Scheme is the first portion of the [Uri] preceding the color (':') character. It is required for the
@@ -25,7 +19,7 @@ interface Uri {
      *
      * This property will return the Scheme component of this [Uri] without the following color (':').
      */
-    val scheme: String
+    public val scheme: String
 
     /**
      * A [Uri] Authority is the portion of the URI after the [scheme] and the "://" sequence. It is optional for the
@@ -35,7 +29,7 @@ interface Uri {
      * following form: [userInfo]@[host]:[port]. Note that each of the sub components are optional as well but if the
      * [userInfo] or [port] are included, then the [host] must be included.
      */
-    val authority: String?
+    public val authority: String?
         get() {
             if (host == null) return null
 
@@ -64,7 +58,7 @@ interface Uri {
      * This property will return the UserInfo subcomponent without the following '@' character, and in the following
      * form: username:password.
      */
-    val userInfo: String?
+    public val userInfo: String?
 
     /**
      * A [Uri] Host subcomponent is a portion of the [authority] component. It is required if the [authority] is
@@ -73,7 +67,7 @@ interface Uri {
      *
      * This property will return the Host subcomponent without the following colon (':') character.
      */
-    val host: String?
+    public val host: String?
 
     /**
      * A [Uri] Port subcomponent is a portion of the [authority] component. It is an optional subcomponent that comes
@@ -82,7 +76,7 @@ interface Uri {
      * This property will return the Port subcomponent without the preceding colon (':') character or the following
      * '/' character, in an [Int] form.
      */
-    val port: Int?
+    public val port: Int?
 
     /**
      * The following is taken from the Wikipedia definition of a [Uri] Path component (their definition is well done so
@@ -100,7 +94,7 @@ interface Uri {
      * This property will return the Path component of the [Uri] including any slash ('/') characters. If there is an
      * [authority] then this [path] should begin with a slash ('/') character.
      */
-    val path: String
+    public val path: String
 
     /**
      * A [Uri] Query component is the portion of the [Uri] after the [path] component. It is an optional component and
@@ -111,7 +105,7 @@ interface Uri {
      * This property will return the Query component of the [Uri] without the preceding question mark ('?') character
      * and including any delimiters between the possible attribute-value pairs.
      */
-    val query: String?
+    public val query: String?
 
     /**
      * A [Uri] Fragment component is the portion of the URI after the [query] component. It is an optional component
@@ -121,7 +115,7 @@ interface Uri {
      *
      * This property will return this Fragment component of the [Uri] without the preceding hash ('#') character.
      */
-    val fragment: String?
+    public val fragment: String?
 
     /**
      * A [Uri] Scheme Specific Part is the portion of the [Uri] after the [scheme] and the colon (':') character that
@@ -130,7 +124,7 @@ interface Uri {
      *
      * This property will return the Scheme Specific Part of this [Uri].
      */
-    val schemeSpecificPart: String
+    public val schemeSpecificPart: String
         get() = buildString {
             if (authority != null) {
                 append("//$authority")
@@ -151,5 +145,11 @@ interface Uri {
      * Represents this [Uri] as a [UriString] value. This should be a [UriString] value consisting of all of the parts
      * of the [Uri].
      */
-    val uriString: UriString
+    public val uriString: UriString
+
+    /**
+     * The companion object for the [Uri] interface. This is useful for creating extension functions related to the
+     * creation of a [Uri].
+     */
+    public companion object
 }

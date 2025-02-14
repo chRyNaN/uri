@@ -2,9 +2,9 @@
 
 package com.chrynan.uri.core
 
-import com.chrynan.validator.UriValidator
-import com.chrynan.validator.UrlValidator
-import com.chrynan.validator.ValidationResult
+import com.chrynan.uri.core.validation.UriValidator
+import com.chrynan.uri.core.validation.UrlValidator
+import com.chrynan.uri.core.validation.ValidationResult
 
 private const val PORT_START_DELIMITER = ':'
 private const val USER_INFO_END_DELIMITER = '@'
@@ -28,7 +28,7 @@ private val uriPartsRegex = Regex("^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#
  * @see [Uri]
  * @see [UriString]
  */
-fun Uri.Companion.fromString(uriString: UriString): Uri {
+public fun Uri.Companion.fromString(uriString: UriString): Uri {
     val schemeEndIndex = uriString.indexOf(SCHEME_END_DELIMITER)
 
     if (schemeEndIndex == -1) throw InvalidUriException(message = "Invalid Uri from String = $uriString. The UriString is missing a Scheme component.")
@@ -112,7 +112,7 @@ fun Uri.Companion.fromString(uriString: UriString): Uri {
  * @see [Uri]
  * @see [UriString]
  */
-fun Uri.Companion.fromStringOrNull(uriString: UriString): Uri? =
+public fun Uri.Companion.fromStringOrNull(uriString: UriString): Uri? =
     try {
         fromString(uriString = uriString)
     } catch (e: InvalidUriException) {
@@ -126,7 +126,7 @@ fun Uri.Companion.fromStringOrNull(uriString: UriString): Uri? =
  * @see [Uri]
  * @see [UriString]
  */
-fun Uri.Companion.fromParts(
+public fun Uri.Companion.fromParts(
     scheme: String,
     userInfo: String? = null,
     host: String? = null,
@@ -206,7 +206,7 @@ fun Uri.Companion.fromParts(
  * @see [Uri]
  * @see [UriString]
  */
-fun Uri.Companion.fromPartsOrNull(
+public fun Uri.Companion.fromPartsOrNull(
     scheme: String,
     userInfo: String? = null,
     host: String? = null,
@@ -238,7 +238,7 @@ fun Uri.Companion.fromPartsOrNull(
  * @see [Uri]
  * @see [UriString]
  */
-fun Uri.Companion.unsafeFromParts(
+public fun Uri.Companion.unsafeFromParts(
     scheme: String,
     userInfo: String? = null,
     host: String? = null,

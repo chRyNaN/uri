@@ -12,7 +12,7 @@ import com.chrynan.uri.core.InvalidUriException
 /**
  * Converts this [Url] to a [Uri] or throws an [InvalidUriException] if a validation exception has been encountered.
  */
-fun Url.toUri(): Uri {
+public fun Url.toUri(): Uri {
     val scheme = this.protocol.name
 
     val userInfo = when {
@@ -42,7 +42,7 @@ fun Url.toUri(): Uri {
 /**
  * Converts this [Url] to a [Uri] or null if a validation exception has been encountered.
  */
-fun Url.toUriOrNull(): Uri? {
+public fun Url.toUriOrNull(): Uri? {
     val scheme = this.protocol.name
 
     val userInfo = when {
@@ -72,7 +72,7 @@ fun Url.toUriOrNull(): Uri? {
 /**
  * Converts this [Uri] to a [Url] or throws an [InvalidUriException] if a validation exception has been encountered.
  */
-fun Uri.toUrl(): Url = try {
+public fun Uri.toUrl(): Url = try {
     Url(urlString = uriString)
 } catch (exception: Exception) {
     throw InvalidUriException(cause = exception)
@@ -81,7 +81,7 @@ fun Uri.toUrl(): Url = try {
 /**
  * Converts this [Uri] to a [Url] or null if a validation exception has been encountered.
  */
-fun Uri.toUrlOrNull(): Url? =
+public fun Uri.toUrlOrNull(): Url? =
     try {
         this.toUrl()
     } catch (exception: InvalidUriException) {
