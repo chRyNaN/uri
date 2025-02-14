@@ -36,6 +36,19 @@ public final class com/chrynan/uri/core/Uri$DefaultImpls {
 	public static fun getSchemeSpecificPart (Lcom/chrynan/uri/core/Uri;)Ljava/lang/String;
 }
 
+public final class com/chrynan/uri/core/UriAsStringSerializer : kotlinx/serialization/KSerializer {
+	public static final field INSTANCE Lcom/chrynan/uri/core/UriAsStringSerializer;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/chrynan/uri/core/Uri;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/chrynan/uri/core/Uri;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/chrynan/uri/core/UriAsStringSerializerKt {
+	public static final fun stringSerializer (Lcom/chrynan/uri/core/Uri$Companion;)Lkotlinx/serialization/KSerializer;
+}
+
 public final class com/chrynan/uri/core/UriCreationUtilsKt {
 	public static final fun fromParts (Lcom/chrynan/uri/core/Uri$Companion;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/chrynan/uri/core/Uri;
 	public static synthetic fun fromParts$default (Lcom/chrynan/uri/core/Uri$Companion;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/chrynan/uri/core/Uri;
@@ -74,6 +87,7 @@ public final class com/chrynan/uri/core/UriParserKt {
 }
 
 public final class com/chrynan/uri/core/UriString {
+	public static final field Companion Lcom/chrynan/uri/core/UriString$Companion;
 	public static final synthetic fun box-impl (Ljava/lang/String;)Lcom/chrynan/uri/core/UriString;
 	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
 	public fun equals (Ljava/lang/Object;)Z
@@ -85,5 +99,19 @@ public final class com/chrynan/uri/core/UriString {
 	public fun toString ()Ljava/lang/String;
 	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
 	public final synthetic fun unbox-impl ()Ljava/lang/String;
+}
+
+public synthetic class com/chrynan/uri/core/UriString$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/chrynan/uri/core/UriString$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun deserialize-QBduTkg (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/String;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public final fun serialize-ulKJ718 (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/String;)V
+}
+
+public final class com/chrynan/uri/core/UriString$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 

@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    kotlin("plugin.serialization")
     id("com.android.library")
     id("org.jetbrains.dokka")
     id("uri.multiplatform")
@@ -11,6 +12,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                // Serialization
+                // https://github.com/Kotlin/kotlinx.serialization
+                implementation(KotlinX.serialization.core)
             }
         }
 
