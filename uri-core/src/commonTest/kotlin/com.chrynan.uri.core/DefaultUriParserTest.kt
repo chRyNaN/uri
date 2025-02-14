@@ -6,6 +6,27 @@ import kotlin.test.assertEquals
 class DefaultUriParserTest {
 
     @Test
+    fun `valid uri parses correctly`() {
+        val uri =
+            DefaultUriParser.parse("https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top")
+
+        assertEquals(
+            expected = uri.toUriString().value,
+            actual = "https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top"
+        )
+    }
+
+    @Test
+    fun `uri with user info parses correctly`() {
+        val uri = DefaultUriParser.parse("https://username:password@example.com")
+
+        assertEquals(
+            expected = uri.toUriString().value,
+            actual = "https://username:password@example.com"
+        )
+    }
+
+    @Test
     fun uri_with_all_components_parses_correctly() {
         assertUri(
             uri = "https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top",

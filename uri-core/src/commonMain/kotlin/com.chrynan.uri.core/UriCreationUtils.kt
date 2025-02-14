@@ -2,24 +2,6 @@
 
 package com.chrynan.uri.core
 
-import com.chrynan.uri.core.validation.UriValidator
-import com.chrynan.uri.core.validation.UrlValidator
-import com.chrynan.uri.core.validation.ValidationResult
-
-private const val PORT_START_DELIMITER = ':'
-private const val USER_INFO_END_DELIMITER = '@'
-private const val SCHEME_END_DELIMITER = ':'
-private const val HOST_IPV6_END_DELIMITER = ']'
-
-private const val SCHEME_HTTP = "http"
-private const val SCHEME_HTTPS = "https"
-private val URL_SCHEMES = listOf(SCHEME_HTTP, SCHEME_HTTPS)
-
-private val uriValidator = UriValidator()
-private val urlValidator = UrlValidator()
-
-private val uriPartsRegex = Regex("^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?")
-
 /**
  * Retrieves a [Uri] from the provided parts. If the provided parts are valid and properly formatted, then a [Uri] is
  * returned. If the provided parts are invalid or not properly formatted, then an [InvalidUriException] is thrown.
@@ -77,27 +59,19 @@ public fun Uri.Companion.fromParts(
         fragment = formattedFragment
     )
 
-    val validationResult = if (URL_SCHEMES.any { it.lowercase() == formattedScheme.lowercase() }) {
-        urlValidator.validate(uriString.value)
-    } else {
-        uriValidator.validate(uriString.value)
-    }
+    Uri.parseOrNull(uriString)
+        ?: throw InvalidUriException(message = "Invalid Uri from String = $uriString.")
 
-    when (validationResult) {
-        is ValidationResult.Invalid -> throw InvalidUriException(message = "Invalid Uri from String = $uriString. Errors = ${validationResult.errors}")
-        is ValidationResult.Valid -> {
-            return createUriFromValidatedParts(
-                uriString = UriString(value = validationResult.value),
-                scheme = formattedScheme,
-                userInfo = formattedUserInfo,
-                host = formattedHost,
-                port = port,
-                path = formattedPath,
-                query = formattedQuery,
-                fragment = formattedFragment
-            )
-        }
-    }
+    return createUriFromValidatedParts(
+        uriString = uriString,
+        scheme = formattedScheme,
+        userInfo = formattedUserInfo,
+        host = formattedHost,
+        port = port,
+        path = formattedPath,
+        query = formattedQuery,
+        fragment = formattedFragment
+    )
 }
 
 /**
