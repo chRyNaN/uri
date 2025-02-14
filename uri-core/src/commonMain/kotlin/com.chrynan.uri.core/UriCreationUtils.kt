@@ -21,105 +21,6 @@ private val urlValidator = UrlValidator()
 private val uriPartsRegex = Regex("^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?")
 
 /**
- * Retrieves a [Uri] from the provided [uriString]. If the provided [uriString] is valid and properly formatted, then a
- * [Uri] instance will be returned. If the provided [uriString] is invalid or is not properly formatted, then the
- * [InvalidUriException] will be thrown.
- *
- * @see [Uri]
- * @see [UriString]
- */
-public fun Uri.Companion.fromString(uriString: UriString): Uri {
-    val schemeEndIndex = uriString.indexOf(SCHEME_END_DELIMITER)
-
-    if (schemeEndIndex == -1) throw InvalidUriException(message = "Invalid Uri from String = $uriString. The UriString is missing a Scheme component.")
-
-    val scheme = uriString.substring(startIndex = 0, endIndex = schemeEndIndex)
-
-    val isHttpUrl = URL_SCHEMES.any { it.lowercase() == scheme.lowercase() }
-
-    when (val validationResult =
-        if (isHttpUrl) urlValidator.validate(uriString) else uriValidator.validate(uriString)) {
-        is ValidationResult.Invalid -> throw InvalidUriException(message = "Invalid Uri from String = $uriString. Errors = ${validationResult.errors}")
-        is ValidationResult.Valid -> {
-            val matchResult = uriPartsRegex.matchEntire(validationResult.value)
-
-            if (matchResult == null) throw InvalidUriException(message = "Invalid Uri from String = $uriString; Match Result = $matchResult")
-
-            val groupValues = matchResult.groupValues
-
-            val validScheme = groupValues.getOrNull(2)
-                ?: throw InvalidUriException(message = "Invalid Uri from String = $uriString. Scheme is missing.")
-            val authority = groupValues.getOrNull(4)
-            val path = groupValues.getOrNull(5) ?: ""
-            val query = groupValues.getOrNull(7)
-            val fragment = groupValues.getOrNull(9)
-
-            val userInfoEndIndex = authority?.indexOf(USER_INFO_END_DELIMITER) ?: -1
-
-            val userInfo =
-                if (userInfoEndIndex == -1) null else authority?.substring(startIndex = 0, endIndex = userInfoEndIndex)
-
-            val hostStartIndex = if (userInfoEndIndex == -1) 0 else userInfoEndIndex + 1
-            val host = authority?.substring(hostStartIndex)?.let {
-                var hostIpv6EndIndex = it.indexOf(HOST_IPV6_END_DELIMITER)
-                var portStartIndex = it.indexOf(PORT_START_DELIMITER)
-
-                if (hostIpv6EndIndex != -1) {
-                    hostIpv6EndIndex += 1
-                }
-
-                if (hostIpv6EndIndex > portStartIndex) {
-                    portStartIndex = -1
-                }
-
-                val hostEndIndex = listOf(hostIpv6EndIndex, portStartIndex, it.length)
-                    .filter { index -> index != -1 }
-                    .minOf { index -> index }
-
-                it.substring(startIndex = hostStartIndex, endIndex = hostEndIndex)
-            }
-
-            val port = authority?.let {
-                val hostIpv6EndIndex = it.indexOf(HOST_IPV6_END_DELIMITER)
-                val portStartIndex = it.indexOf(PORT_START_DELIMITER)
-
-                if (portStartIndex == -1 || hostIpv6EndIndex > portStartIndex) {
-                    null
-                } else {
-                    it.substring(startIndex = portStartIndex + 1)
-                }
-            }?.toIntOrNull()
-
-            return createUriFromValidatedParts(
-                uriString = validationResult.value,
-                scheme = validScheme,
-                userInfo = userInfo,
-                host = host,
-                port = port,
-                path = path,
-                query = query,
-                fragment = fragment
-            )
-        }
-    }
-}
-
-/**
- * Retrieves a [Uri] from the provided [uriString]. If the provided [uriString] is valid and properly formatted, then a
- * [Uri] instance will be returned. If the provided [uriString] is invalid or is not properly formatted, then the null
- * will be returned.
- *
- * @see [Uri]
- * @see [UriString]
- */
-public fun Uri.Companion.fromStringOrNull(uriString: UriString): Uri? =
-    try {
-        fromString(uriString = uriString)
-    } catch (e: InvalidUriException) {
-        null
-    }
-
-/**
  * Retrieves a [Uri] from the provided parts. If the provided parts are valid and properly formatted, then a [Uri] is
  * returned. If the provided parts are invalid or not properly formatted, then an [InvalidUriException] is thrown.
  *
@@ -177,16 +78,16 @@ public fun Uri.Companion.fromParts(
     )
 
     val validationResult = if (URL_SCHEMES.any { it.lowercase() == formattedScheme.lowercase() }) {
-        urlValidator.validate(uriString)
+        urlValidator.validate(uriString.value)
     } else {
-        uriValidator.validate(uriString)
+        uriValidator.validate(uriString.value)
     }
 
     when (validationResult) {
         is ValidationResult.Invalid -> throw InvalidUriException(message = "Invalid Uri from String = $uriString. Errors = ${validationResult.errors}")
         is ValidationResult.Valid -> {
             return createUriFromValidatedParts(
-                uriString = validationResult.value,
+                uriString = UriString(value = validationResult.value),
                 scheme = formattedScheme,
                 userInfo = formattedUserInfo,
                 host = formattedHost,
@@ -278,16 +179,35 @@ private fun createUriFromValidatedParts(
     path: String,
     query: String? = null,
     fragment: String? = null
-): Uri = SimpleUri(
-    uriString = uriString,
-    scheme = scheme.lowercase(),
-    userInfo = if (userInfo.isNullOrBlank()) null else userInfo,
-    host = if (host.isNullOrBlank()) null else host,
-    port = port,
-    path = path.ifBlank { "" },
-    query = if (query.isNullOrBlank()) null else query,
-    fragment = if (fragment.isNullOrBlank()) null else fragment
-)
+): Uri {
+    val authority = if (host == null) {
+        null
+    } else {
+        buildString {
+            if (userInfo != null) {
+                append("$userInfo@")
+            }
+
+            append(host)
+
+            if (port != null) {
+                append(":$port")
+            }
+        }
+    }
+
+    return DefaultUri(
+        uriString = uriString,
+        scheme = scheme.lowercase(),
+        authority = authority,
+        userInfo = if (userInfo.isNullOrBlank()) null else userInfo,
+        host = if (host.isNullOrBlank()) null else host,
+        port = port,
+        path = path.ifBlank { "" },
+        query = if (query.isNullOrBlank()) null else query,
+        fragment = if (fragment.isNullOrBlank()) null else fragment
+    )
+}
 
 /**
  * A private function that creates a [UriString] from the provided parts. The provided parts are expected to be already
@@ -301,32 +221,36 @@ private fun uriStringFromParts(
     path: String,
     query: String? = null,
     fragment: String? = null
-): UriString = buildString {
-    append(scheme)
+): UriString {
+    val value = buildString {
+        append(scheme)
 
-    if (host != null) {
-        append("://")
+        if (host != null) {
+            append("://")
 
-        if (userInfo != null) {
-            append("$userInfo@")
+            if (userInfo != null) {
+                append("$userInfo@")
+            }
+
+            append(host)
+
+            if (port != null) {
+                append(":$port")
+            }
+        } else {
+            append(":")
         }
 
-        append(host)
+        append(path)
 
-        if (port != null) {
-            append(":$port")
+        if (query != null) {
+            append("?$query")
         }
-    } else {
-        append(":")
+
+        if (fragment != null) {
+            append("#$fragment")
+        }
     }
 
-    append(path)
-
-    if (query != null) {
-        append("?$query")
-    }
-
-    if (fragment != null) {
-        append("#$fragment")
-    }
+    return UriString(value = value)
 }

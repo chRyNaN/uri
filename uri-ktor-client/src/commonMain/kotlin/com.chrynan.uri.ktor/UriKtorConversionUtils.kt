@@ -73,7 +73,7 @@ public fun Url.toUriOrNull(): Uri? {
  * Converts this [Uri] to a [Url] or throws an [InvalidUriException] if a validation exception has been encountered.
  */
 public fun Uri.toUrl(): Url = try {
-    Url(urlString = uriString)
+    Url(urlString = this.toUriString().value)
 } catch (exception: Exception) {
     throw InvalidUriException(cause = exception)
 }

@@ -27,7 +27,19 @@ public val Uri.slug: String?
  * then this will return an empty [List].
  */
 public val Uri.pathSegments: List<String>
-    get() = path.split('/')
+    get() {
+        val segments = path.split('/')
+
+        return if (path.startsWith('/')) {
+            // The split function will return an empty string before the first '/' character.
+            segments.drop(1)
+        } else if (segments.isEmpty()) {
+            // There was no '/' character to split on, but there still is a path value, so wrap it.
+            listOf(path)
+        } else {
+            segments
+        }
+    }
 
 /**
  * Retrieves a [Map] of [String] keys and values representing the individual Query Parameters in this [Uri]. A Query

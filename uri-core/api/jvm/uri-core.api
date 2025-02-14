@@ -1,34 +1,11 @@
-public final class com/chrynan/uri/core/InvalidUriException : java/lang/RuntimeException {
+public abstract interface annotation class com/chrynan/uri/core/ExperimentalUriApi : java/lang/annotation/Annotation {
+}
+
+public final class com/chrynan/uri/core/InvalidUriException : com/chrynan/uri/core/UriParseException {
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/String;Ljava/lang/Exception;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Exception;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun getMessage ()Ljava/lang/String;
-}
-
-public final class com/chrynan/uri/core/SimpleUri : com/chrynan/uri/core/Uri {
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Ljava/lang/String;
-	public final fun component5 ()Ljava/lang/Integer;
-	public final fun component6 ()Ljava/lang/String;
-	public final fun component7 ()Ljava/lang/String;
-	public final fun component8 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/chrynan/uri/core/SimpleUri;
-	public static synthetic fun copy$default (Lcom/chrynan/uri/core/SimpleUri;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/chrynan/uri/core/SimpleUri;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun getAuthority ()Ljava/lang/String;
-	public fun getFragment ()Ljava/lang/String;
-	public fun getHost ()Ljava/lang/String;
-	public fun getPath ()Ljava/lang/String;
-	public fun getPort ()Ljava/lang/Integer;
-	public fun getQuery ()Ljava/lang/String;
-	public fun getScheme ()Ljava/lang/String;
-	public fun getSchemeSpecificPart ()Ljava/lang/String;
-	public fun getUriString ()Ljava/lang/String;
-	public fun getUserInfo ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
 }
 
 public abstract interface class com/chrynan/uri/core/Uri {
@@ -41,15 +18,21 @@ public abstract interface class com/chrynan/uri/core/Uri {
 	public abstract fun getQuery ()Ljava/lang/String;
 	public abstract fun getScheme ()Ljava/lang/String;
 	public abstract fun getSchemeSpecificPart ()Ljava/lang/String;
-	public abstract fun getUriString ()Ljava/lang/String;
 	public abstract fun getUserInfo ()Ljava/lang/String;
+	public abstract fun toUriString-QkDDX0s ()Ljava/lang/String;
 }
 
-public final class com/chrynan/uri/core/Uri$Companion {
+public final class com/chrynan/uri/core/Uri$Companion : com/chrynan/uri/core/UriParser {
+	public final fun getGeneralDelimiters ()Ljava/util/Set;
+	public final fun getReserved ()Ljava/util/Set;
+	public final fun getSubDelimiters ()Ljava/util/Set;
+	public final fun isGeneralDelimiter (C)Z
+	public final fun isReserved (C)Z
+	public final fun isSubDelimiter (C)Z
+	public fun parse-bbJoqE4 (Ljava/lang/String;)Lcom/chrynan/uri/core/Uri;
 }
 
 public final class com/chrynan/uri/core/Uri$DefaultImpls {
-	public static fun getAuthority (Lcom/chrynan/uri/core/Uri;)Ljava/lang/String;
 	public static fun getSchemeSpecificPart (Lcom/chrynan/uri/core/Uri;)Ljava/lang/String;
 }
 
@@ -58,8 +41,6 @@ public final class com/chrynan/uri/core/UriCreationUtilsKt {
 	public static synthetic fun fromParts$default (Lcom/chrynan/uri/core/Uri$Companion;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/chrynan/uri/core/Uri;
 	public static final fun fromPartsOrNull (Lcom/chrynan/uri/core/Uri$Companion;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/chrynan/uri/core/Uri;
 	public static synthetic fun fromPartsOrNull$default (Lcom/chrynan/uri/core/Uri$Companion;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/chrynan/uri/core/Uri;
-	public static final fun fromString (Lcom/chrynan/uri/core/Uri$Companion;Ljava/lang/String;)Lcom/chrynan/uri/core/Uri;
-	public static final fun fromStringOrNull (Lcom/chrynan/uri/core/Uri$Companion;Ljava/lang/String;)Lcom/chrynan/uri/core/Uri;
 	public static final fun unsafeFromParts (Lcom/chrynan/uri/core/Uri$Companion;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/chrynan/uri/core/Uri;
 	public static synthetic fun unsafeFromParts$default (Lcom/chrynan/uri/core/Uri$Companion;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/chrynan/uri/core/Uri;
 }
@@ -69,5 +50,40 @@ public final class com/chrynan/uri/core/UriExtensionsKt {
 	public static final fun getSlug (Lcom/chrynan/uri/core/Uri;)Ljava/lang/String;
 	public static final fun queryParameters (Lcom/chrynan/uri/core/Uri;[CZ)Ljava/util/Map;
 	public static synthetic fun queryParameters$default (Lcom/chrynan/uri/core/Uri;[CZILjava/lang/Object;)Ljava/util/Map;
+}
+
+public class com/chrynan/uri/core/UriParseException : java/lang/RuntimeException {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Throwable;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Throwable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public abstract interface class com/chrynan/uri/core/UriParser {
+	public static final field Companion Lcom/chrynan/uri/core/UriParser$Companion;
+	public abstract fun parse-bbJoqE4 (Ljava/lang/String;)Lcom/chrynan/uri/core/Uri;
+}
+
+public final class com/chrynan/uri/core/UriParser$Companion {
+}
+
+public final class com/chrynan/uri/core/UriParserKt {
+	public static final fun getDefault (Lcom/chrynan/uri/core/UriParser$Companion;)Lcom/chrynan/uri/core/UriParser;
+	public static final fun parse (Lcom/chrynan/uri/core/UriParser;Ljava/lang/String;)Lcom/chrynan/uri/core/Uri;
+	public static final fun parseOrNull (Lcom/chrynan/uri/core/UriParser;Ljava/lang/String;)Lcom/chrynan/uri/core/Uri;
+	public static final fun parseOrNull-ulKJ718 (Lcom/chrynan/uri/core/UriParser;Ljava/lang/String;)Lcom/chrynan/uri/core/Uri;
+}
+
+public final class com/chrynan/uri/core/UriString {
+	public static final synthetic fun box-impl (Ljava/lang/String;)Lcom/chrynan/uri/core/UriString;
+	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
+	public final fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Ljava/lang/String;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Ljava/lang/String;
 }
 

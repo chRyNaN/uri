@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -9,7 +10,7 @@ plugins {
 }
 
 kotlin {
-    //applyDefaultHierarchyTemplate()
+    applyDefaultHierarchyTemplate()
 
     js {
         nodejs {
@@ -21,7 +22,7 @@ kotlin {
         binaries.executable()
     }
 
-    //@OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
+    @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         nodejs {
             testTask {

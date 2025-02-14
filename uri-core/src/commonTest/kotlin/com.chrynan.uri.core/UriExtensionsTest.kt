@@ -8,7 +8,7 @@ class UriExtensionsTest {
 
     @Test
     fun query_parameters_returns_expected_values() {
-        val uri = Uri.fromString("https://www.example.com/some/path?one=valueOne&two=valueTwo&three")
+        val uri = Uri.parse("https://www.example.com/some/path?one=valueOne&two=valueTwo&three")
 
         val queryParameters = uri.queryParameters()
 

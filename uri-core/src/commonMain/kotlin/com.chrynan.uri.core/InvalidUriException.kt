@@ -6,4 +6,4 @@ package com.chrynan.uri.core
 public class InvalidUriException(
     override val message: String? = null,
     cause: Exception? = null
-) : RuntimeException("Invalid Uri: message = $message", cause)
+) : UriParseException("Invalid Uri: message = $message", cause)

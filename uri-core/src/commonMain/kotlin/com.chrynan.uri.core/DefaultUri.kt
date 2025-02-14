@@ -5,13 +5,17 @@ package com.chrynan.uri.core
  * validated and formatted upon construction of this class. If the provided values are not validated and formatted, the
  * behavior is undefined.
  */
-public data class SimpleUri internal constructor(
-    override val uriString: UriString,
-    override val scheme: String,
+internal data class DefaultUri internal constructor(
+    override val scheme: String?,
+    override val authority: String?,
     override val userInfo: String? = null,
     override val host: String? = null,
     override val port: Int? = null,
     override val path: String,
     override val query: String? = null,
-    override val fragment: String? = null
-) : Uri
+    override val fragment: String? = null,
+    private val uriString: UriString
+) : Uri {
+
+    override fun toUriString(): UriString = uriString
+}

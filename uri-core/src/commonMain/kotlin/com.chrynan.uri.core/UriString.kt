@@ -1,12 +1,15 @@
 package com.chrynan.uri.core
 
+import kotlin.jvm.JvmInline
+
 /**
- * A [UriString] is a [String] representation of a complete [Uri].
+ * A [UriString] is a wrapper around a [String] representation of a complete [Uri].
  *
  * Note that no verification is performed to assert that a [UriString] is valid and properly formatted. To verify that
- * a [UriString] is valid, convert it to a [Uri] using the [Uri.Companion.fromString] or
- * [Uri.Companion.fromStringOrNull] functions.
- *
- * Note that [UriString] is just a typealias to [String].
+ * a [UriString] is valid, convert it to a [Uri] using a [UriParser].
  */
-public typealias UriString = String
+// TODO: @Serializable
+@JvmInline
+public value class UriString public constructor(
+    public val value: String
+)
